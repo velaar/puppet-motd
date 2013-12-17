@@ -30,6 +30,9 @@
 #        message => 'Package X can be used for Y'
 #
 define motd::news ($date, $newstitle = $title, $message = undef) {
+
+  validate_re($date,'^[0-9]{4}-[0-9]{2}-[0-9]{2}$','date must be of format YYYY-MM-DD, e.g 2013-12-1')
+
   $year_month = regsubst($date, '^(\d+)\-(\d+)\-(\d+)$', '\1\2')
   $motd_archive_files = "/etc/motd-archive/${year_month}"
 
@@ -47,8 +50,6 @@ define motd::news ($date, $newstitle = $title, $message = undef) {
     }
 
   }
-
-  file{'/tmp/abc': ensure => file}
 
   concat::fragment { "motd_archive_frag_${date}_${name}":
     target  => $motd_archive_files,
