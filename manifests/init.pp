@@ -14,7 +14,7 @@ class motd (
   }
 
   # Specify /etc/motd file.
-  concat { $motd: mode => '0444' }
+  concat { $motd: mode => '0644', owner => 'root', group => 'root' }
 
   motd::header{'header':
     message => $delimiter,
