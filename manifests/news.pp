@@ -19,8 +19,6 @@
 #    If defined then specifies a long message for new news item on
 #    multilines.
 #
-# The resulting format of a news item is :
-#
 #    [*date*] - [*newtitle*]
 #       [*message*]
 #
