@@ -8,10 +8,13 @@ describe 'motd::news' do
      let(:title) {'Some News'}
      date = '2013-12-11'
      let(:params) { { :date => date}}
+     shortdate = date.gsub(/^(\d+)\-(\d+)\-(\d+)$/,'\1\2')
      it do 
-       $stdout.puts self.catalogue.to_yaml
-       $stdout.puts "HERE /etc/motd-archive/#{date.gsub(/^(\d+)\-(\d+)\-(\d+)$/,'\1\2')}"
-       should contain_file{"/doesnotexist"}.with({
+       should contain_file("/etc/motd-archive/#{shortdate}").with({
+          'ensure' => 'present',
+          'owner'  => 'root',
+          'group'  => 'root',
+          'mode'   => '0644'
        })
      end
   end

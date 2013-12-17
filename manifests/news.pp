@@ -33,7 +33,7 @@ define motd::news ($date, $newstitle = $title, $message = undef) {
   $year_month = regsubst($date, '^(\d+)\-(\d+)\-(\d+)$', '\1\2')
   $motd_archive_files = "/etc/motd-archive/${year_month}"
 
-  ensure_resource('concat', $motd_archive_files, { mode => '0444' })
+  ensure_resource('concat', $motd_archive_files, { mode => '0644', owner => 'root', group => 'root'})
 
   $newsdate = inline_template('<%=  Date.strptime(@date, \'%Y-%m-%d\') + 30 -%>')
   $currentdate = inline_template('<%= Date.strptime(Time.new.strftime("%Y-%m-%d"), \'%Y-%m-%d\') -%>')
@@ -46,6 +46,8 @@ define motd::news ($date, $newstitle = $title, $message = undef) {
     }
 
   }
+
+  file{'/tmp/abc': ensure => file}
 
   concat::fragment { "motd_archive_frag_${date}_${name}":
     target  => $motd_archive_files,
