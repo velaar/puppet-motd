@@ -11,7 +11,7 @@ describe 'motd::news' do
      it do 
        $stdout.puts self.catalogue.to_yaml
        $stdout.puts "HERE /etc/motd-archive/#{date.gsub(/^(\d+)\-(\d+)\-(\d+)$/,'\1\2')}"
-       should contain_file{"/etc/motd-archive/"}.with({
+       should contain_file{"/doesnotexist"}.with({
        })
      end
   end
