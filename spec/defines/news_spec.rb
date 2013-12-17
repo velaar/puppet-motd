@@ -6,9 +6,12 @@ describe 'motd::news' do
        { :concat_basedir => '/doesnotexist' }
      end
      let(:title) {'Some News'}
-     let(:params) { { :date => '2013-12-11' }}
+     date = '2013-12-11'
+     let(:params) { { :date => date}}
      it do 
-       should contain_file{"/etc/motd-archive/#{date.gsub(/^(\d+)\-(\d+)\-(\d+)$/,'\1\2')}"}.with({
+       $stdout.puts self.catalogue.to_yaml
+       $stdout.puts "HERE /etc/motd-archive/#{date.gsub(/^(\d+)\-(\d+)\-(\d+)$/,'\1\2')}"
+       should contain_file{"/etc/motd-archive/"}.with({
        })
      end
   end
