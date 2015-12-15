@@ -54,7 +54,7 @@ class motd (
   }
 
   # Generating news from Hiera 
-  $hiera_news = hiera_hash('motd::news',$news_default) 
+  $hiera_news = hiera_hash('motd::news', undef) 
   create_resources(motd::news, $hiera_news)
 
 }

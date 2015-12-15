@@ -9,9 +9,6 @@ class motd::params {
 
   $motd_header    = hiera('motd_header',$default_header)
   
-  $news_default = { 'No news' => { date => '0000-00-00', message => "Good news!", }, }
-
-
   file { '/etc/issue.net':
     ensure  => 'file',
     content => template('motd/issue.erb'),
