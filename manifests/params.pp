@@ -10,7 +10,7 @@ class motd::params {
   $motd_header    = hiera('motd_header',$default_header)
 
   # The delimeter between the sections of the /etc/motd file can be specified.
-  $default_delimiter = '********************************************************************'
+  $default_delimiter = '* ******************************************************************** *'
   $delimiter      = hiera('motd_delimiter',$default_delimiter)
 
   # Default values for /etc/issue and /etc/issue.net
