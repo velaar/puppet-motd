@@ -9,14 +9,6 @@ class motd::params {
 
   $motd_header    = hiera('motd_header',$default_header)
   
-  file { '/etc/issue.net':
-    ensure  => 'file',
-    content => template('motd/issue.erb'),
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0644',
-  }
-
   # The delimeter between the sections of the /etc/motd file can be specified.
   $default_delimiter = '* ******************************************************************** *'
   $delimiter      = hiera('motd_delimiter',$default_delimiter)
