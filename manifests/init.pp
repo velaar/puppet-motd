@@ -52,5 +52,10 @@ class motd (
     group   => 'root',
     mode    => '0644',
   }
+
+  # Generating news from Hiera 
+  $hiera_news = hiera_hash('motd::news') 
+  create_resources(motd::news, $hiera_news)
+
 }
 
