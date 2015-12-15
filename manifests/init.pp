@@ -36,6 +36,10 @@ class motd (
     message => $delimiter,
     order   => '10',
   }
+  motd::header{ 'motd_spacer':
+      message => "\n\n",
+      order   => '99',
+  }
 
   file { '/etc/issue':
     ensure  => 'file',
