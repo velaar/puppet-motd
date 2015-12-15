@@ -24,7 +24,7 @@ class motd (
   concat { $motd: mode => '0644', owner => 'root', group => 'root' }
 
   motd::header{'header':
-    message => $delimiter,
+    message => $delimiter + "/n/n",
     order   => '00'
   }
   concat::fragment { 'motd_header':
@@ -33,7 +33,7 @@ class motd (
     order   => '03',
   }
   motd::header{ 'motd_footer':
-    message => $delimiter,
+    message => $delimiter + "/n/n",
     order   => '10',
   }
 
